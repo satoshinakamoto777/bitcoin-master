@@ -1,0 +1,181 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build bitcoin-qt Release x64",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/s",
+				"/c",
+				"call \"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\Tools\\vcvars64.bat\" & \"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe\" build_msvc\\bitcoin.sln /t:bitcoin-qt /p:Configuration=Release /p:Platform=x64 /m /v:minimal"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build bitcoin-qt Release x64 (VS shell)",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				". 'C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\Tools\\Launch-VsDevShell.ps1' -Arch amd64 -HostArch amd64; & 'C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe' 'build_msvc\\bitcoin.sln' /t:bitcoin-qt /p:Configuration=Release /p:Platform=x64 /m /v:minimal"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build bitcoin-qt Release x64 (short paths)",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/s",
+				"/c",
+				"call C:\\PROGRA~1\\MICROS~1\\18\\COMMUN~1\\Common7\\Tools\\vcvars64.bat & C:\\PROGRA~1\\MICROS~1\\18\\COMMUN~1\\MSBuild\\Current\\Bin\\MSBuild.exe build_msvc\\bitcoin.sln /t:bitcoin-qt /p:Configuration=Release /p:Platform=x64 /m /v:minimal"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Inspect Visual Studio short paths",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"dir",
+				"/x",
+				"C:\\Program Files"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect Visual Studio edition short path",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"dir",
+				"/x",
+				"C:\\Program Files\\Microsoft Visual Studio\\18"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build bitcoin-qt Release x64",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/s",
+				"/c",
+				"call C:\\PROGRA~1\\MICROS~2\\18\\COMMUN~1\\Common7\\Tools\\vcvars64.bat & C:\\PROGRA~1\\MICROS~2\\18\\COMMUN~1\\MSBuild\\Current\\Bin\\MSBuild.exe build_msvc\\bitcoin.sln /t:bitcoin-qt /p:Configuration=Release /p:Platform=x64 /m /v:minimal"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build bitcoin-qt Release x64 (short aliases v2)",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/s",
+				"/c",
+				"call C:\\PROGRA~1\\MICROS~2\\18\\COMMUN~1\\Common7\\Tools\\vcvars64.bat & C:\\PROGRA~1\\MICROS~2\\18\\COMMUN~1\\MSBuild\\Current\\Bin\\MSBuild.exe build_msvc\\bitcoin.sln /t:bitcoin-qt /p:Configuration=Release /p:Platform=x64 /m /v:minimal"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Install vcpkg dependencies",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/s",
+				"/c",
+				"cd /d \"C:\\Users\\JEFFREY J. LEE\\Desktop\\bitcoin-master\" && mkdir deps 2>nul && cd deps && if not exist vcpkg git clone --depth 1 https://github.com/microsoft/vcpkg.git vcpkg && call vcpkg\\bootstrap-vcpkg.bat && vcpkg\\vcpkg install --triplet x64-windows-static --x-manifest-root \"C:\\Users\\JEFFREY J. LEE\\Desktop\\bitcoin-master\\build_msvc\" --x-install-root \"C:\\Users\\JEFFREY J. LEE\\Desktop\\bitcoin-master\\build_msvc\\vcpkg_installed\""
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Check Qt and tool prerequisites",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$ErrorActionPreference='Stop'; Write-Host 'git:'; if (Get-Command git -ErrorAction SilentlyContinue) { git --version } else { 'missing' }; Write-Host 'winget:'; if (Get-Command winget -ErrorAction SilentlyContinue) { winget --version } else { 'missing' }; Write-Host 'qt path:'; if (Test-Path 'C:\\Qt_static') { 'C:\\Qt_static exists' } else { 'C:\\Qt_static missing' }; if (Test-Path 'C:\\vcpkg') { 'C:\\vcpkg exists' } else { 'C:\\vcpkg missing' }; if (Test-Path 'C:\\Program Files\\Git\\cmd\\git.exe') { 'Git in Program Files found' } else { 'Git in Program Files missing' }"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Install static Qt 5.15.5",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/s",
+				"/c",
+				"call \"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\Tools\\vcvars64.bat\" & if not exist \"C:\\qt-everywhere-opensource-src-5.15.5.zip\" curl.exe -L --fail --retry 3 --output \"C:\\qt-everywhere-opensource-src-5.15.5.zip\" \"https://download.qt.io/official_releases/qt/5.15/5.15.5/single/qt-everywhere-opensource-src-5.15.5.zip\" & if exist \"C:\\qt-everywhere-opensource-src-5.15.5\" rmdir /s /q \"C:\\qt-everywhere-opensource-src-5.15.5\" & if not exist \"C:\\qt-source\\configure\" powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"Expand-Archive -Path 'C:\\qt-everywhere-opensource-src-5.15.5.zip' -DestinationPath 'C:\\' -Force; if (Test-Path 'C:\\qt-everywhere-opensource-src-5.15.5') { if (Test-Path 'C:\\qt-source') { Remove-Item -Path 'C:\\qt-source' -Recurse -Force }; Rename-Item -Path 'C:\\qt-everywhere-opensource-src-5.15.5' -NewName 'qt-source' }\" & if not exist \"C:\\qt-source\\build\" mkdir \"C:\\qt-source\\build\" & cd /d \"C:\\qt-source\\build\" & if not exist \"config.summary\" ..\\configure -release -silent -opensource -confirm-license -opengl desktop -static -static-runtime -mp -qt-zlib -qt-pcre -qt-libpng -nomake examples -nomake tests -nomake tools -no-angle -no-dbus -no-gif -no-gtk -no-ico -no-icu -no-libjpeg -no-libudev -no-sql-sqlite -no-sql-odbc -no-sqlite -no-vulkan -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip doc -skip qtdoc -skip qtgamepad -skip qtgraphicaleffects -skip qtimageformats -skip qtlocation -skip qtlottie -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquick3d -skip qtquickcontrols -skip qtquickcontrols2 -skip qtquicktimeline -skip qtremoteobjects -skip qtscript -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebglplugin -skip qtwebsockets -skip qtwebview -skip qtx11extras -skip qtxmlpatterns -no-openssl -no-feature-bearermanagement -no-feature-printdialog -no-feature-printer -no-feature-printpreviewdialog -no-feature-printpreviewwidget -no-feature-sql -no-feature-sqlmodel -no-feature-textbrowser -no-feature-textmarkdownwriter -no-feature-textodfwriter -no-feature-xml -prefix C:\\Qt_static & nmake & nmake install"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Download and build static Qt 5.15.5",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/s",
+				"/c",
+				"call C:\\PROGRA~1\\MICROS~2\\18\\COMMUN~1\\Common7\\Tools\\vcvars64.bat & if not exist C:\\qt-source\\configure ( if not exist C:\\qt-everywhere-opensource-src-5.15.5.zip curl.exe -L --fail --retry 3 --output C:\\qt-everywhere-opensource-src-5.15.5.zip https://download.qt.io/archive/qt/5.15/5.15.5/single/qt-everywhere-opensource-src-5.15.5.zip ) & if exist C:\\qt-everywhere-opensource-src-5.15.5 rmdir /s /q C:\\qt-everywhere-opensource-src-5.15.5 & if exist C:\\qt-source\\configure ( echo Qt source already present ) else ( if exist C:\\qt-source rmdir /s /q C:\\qt-source & powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"Expand-Archive -Path 'C:\\qt-everywhere-opensource-src-5.15.5.zip' -DestinationPath 'C:\\' -Force; if (Test-Path 'C:\\qt-everywhere-opensource-src-5.15.5') { Rename-Item -Path 'C:\\qt-everywhere-opensource-src-5.15.5' -NewName 'qt-source' }\" ) & if not exist C:\\qt-source\\build mkdir C:\\qt-source\\build & cd /d C:\\qt-source\\build & if not exist config.summary ..\\configure -release -silent -opensource -confirm-license -opengl desktop -static -static-runtime -mp -qt-zlib -qt-pcre -qt-libpng -nomake examples -nomake tests -nomake tools -no-angle -no-dbus -no-gif -no-gtk -no-ico -no-icu -no-libjpeg -no-libudev -no-sql-sqlite -no-sql-odbc -no-sqlite -no-vulkan -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip doc -skip qtdoc -skip qtgamepad -skip qtgraphicaleffects -skip qtimageformats -skip qtlocation -skip qtlottie -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquick3d -skip qtquickcontrols -skip qtquickcontrols2 -skip qtquicktimeline -skip qtremoteobjects -skip qtscript -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebglplugin -skip qtwebsockets -skip qtwebview -skip qtx11extras -skip qtxmlpatterns -no-openssl -no-feature-bearermanagement -no-feature-printdialog -no-feature-printer -no-feature-printpreviewdialog -no-feature-printpreviewwidget -no-feature-sql -no-feature-sqlmodel -no-feature-textbrowser -no-feature-textmarkdownwriter -no-feature-textodfwriter -no-feature-xml -prefix C:\\Qt_static & nmake & nmake install"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Qt static install from archive mirror",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$ErrorActionPreference='Stop'; . 'C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\Tools\\Launch-VsDevShell.ps1' -Arch amd64 -HostArch amd64; if (!(Test-Path 'C:\\qt-source\\configure')) { if (!(Test-Path 'C:\\qt-everywhere-opensource-src-5.15.5.zip')) { curl.exe -L --fail --retry 3 --output 'C:\\qt-everywhere-opensource-src-5.15.5.zip' 'https://download.qt.io/archive/qt/5.15/5.15.5/single/qt-everywhere-opensource-src-5.15.5.zip' }; if (Test-Path 'C:\\qt-everywhere-opensource-src-5.15.5') { Remove-Item 'C:\\qt-everywhere-opensource-src-5.15.5' -Recurse -Force }; Expand-Archive -Path 'C:\\qt-everywhere-opensource-src-5.15.5.zip' -DestinationPath 'C:\\' -Force; if (Test-Path 'C:\\qt-everywhere-opensource-src-5.15.5') { if (Test-Path 'C:\\qt-source') { Remove-Item 'C:\\qt-source' -Recurse -Force }; Rename-Item 'C:\\qt-everywhere-opensource-src-5.15.5' 'qt-source' } }; if (!(Test-Path 'C:\\qt-source\\build')) { New-Item -ItemType Directory -Path 'C:\\qt-source\\build' -Force | Out-Null }; Set-Location 'C:\\qt-source\\build'; if (!(Test-Path 'config.summary')) { & '..\\configure' -release -silent -opensource -confirm-license -opengl desktop -static -static-runtime -mp -qt-zlib -qt-pcre -qt-libpng -nomake examples -nomake tests -nomake tools -no-angle -no-dbus -no-gif -no-gtk -no-ico -no-icu -no-libjpeg -no-libudev -no-sql-sqlite -no-sql-odbc -no-sqlite -no-vulkan -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip doc -skip qtdoc -skip qtgamepad -skip qtgraphicaleffects -skip qtimageformats -skip qtlocation -skip qtlottie -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquick3d -skip qtquickcontrols -skip qtquickcontrols2 -skip qtquicktimeline -skip qtremoteobjects -skip qtscript -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebglplugin -skip qtwebsockets -skip qtwebview -skip qtx11extras -skip qtxmlpatterns -no-openssl -no-feature-bearermanagement -no-feature-printdialog -no-feature-printer -no-feature-printpreviewdialog -no-feature-printpreviewwidget -no-feature-sql -no-feature-sqlmodel -no-feature-textbrowser -no-feature-textmarkdownwriter -no-feature-textodfwriter -no-feature-xml -prefix C:\\Qt_static }; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; nmake; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; nmake install; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Write-Host 'Qt install complete'; if (Test-Path 'C:\\Qt_static\\bin\\qmake.exe') { Write-Host 'qmake.exe found' } else { Write-Host 'qmake.exe missing' }"
+			],
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}
