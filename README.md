@@ -1,4 +1,4 @@
-Bitcoin (Consensus "Amount.h" file) updated to support total supply cap of 21 trillion coins. (Note You must download and unzip this file in windows 10 then compile the code to run in Windows.) Note I AM NOT DORIAN, NICK, KLIEMAN, FINNEY, OR CRAIG ETC.! THERE IS MUCH WORK THAT NEEDS TO BE DONE. SO LET'S GET TO WORK!
+Bitcoin (Consensus "Amount.h" file) updated to support total supply cap of 21 trillion coins. (Note You must download and unzip this file in windows 10.) Note I AM NOT DORIAN, NICK, KLIEMAN, FINNEY, OR CRAIG ETC.! THERE IS MUCH WORK THAT NEEDS TO BE DONE. SO LET'S GET TO WORK!
 
 
 
